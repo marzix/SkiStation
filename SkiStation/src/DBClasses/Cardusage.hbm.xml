@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-09 22:48:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DBClasses.Cardusage" table="cardusage" schema="public">
+        <id name="useid" type="int">
+            <column name="useid" />
+            <generator class="identity"></generator>
+        </id>
+        <many-to-one name="terminal" class="DBClasses.Terminal" fetch="select">
+            <column name="terminal_terminalid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cards" class="DBClasses.Cards" fetch="select">
+            <column name="cards_cardid" not-null="true" />
+        </many-to-one>
+        <property name="usedate" type="timestamp">
+            <column name="usedate" length="22" not-null="true" />
+        </property>
+        <set name="boughtitems" table="boughtitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cardusage_useid" not-null="true" />
+            </key>
+            <one-to-many class="DBClasses.Boughtitem" />
+        </set>
+    </class>
+</hibernate-mapping>

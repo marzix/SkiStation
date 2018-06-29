@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-01 18:16:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DBClasses.Itemprice" table="itemprice" schema="public" optimistic-lock="version">
+        <id name="itempriceid" type="int">
+            <column name="itempriceid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pricelist" class="DBClasses.Pricelist" fetch="select">
+            <column name="pricelist_pricelistid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="product" class="DBClasses.Product" fetch="select">
+            <column name="product_productid" not-null="true" />
+        </many-to-one>
+        <property name="price" type="int">
+            <column name="price" not-null="true" />
+        </property>
+        <set name="boughtitems" table="boughtitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="itemprice_itempriceid" not-null="true" />
+            </key>
+            <one-to-many class="DBClasses.Boughtitem" />
+        </set>
+    </class>
+</hibernate-mapping>

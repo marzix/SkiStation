@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-01 18:16:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DBClasses.Clients" table="clients" schema="public" optimistic-lock="version">
+        <id name="clientid" type="int">
+            <column name="clientid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="DBClasses.Users" fetch="select">
+            <column name="users_userid" not-null="false" />
+        </many-to-one>
+        <property name="registrationdate" type="timestamp">
+            <column name="registrationdate" length="22" />
+        </property>
+        <set name="cardses" table="cards" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="clients_clientid" not-null="true" />
+            </key>
+            <one-to-many class="DBClasses.Cards" />
+        </set>
+        <property name="points" type="int">
+            <column name="points" not-null="false" />
+        </property>
+        <set name="chargeses" table="charges" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="clients_clientid" not-null="true" />
+            </key>
+            <one-to-many class="DBClasses.Charges" />
+        </set>
+    </class>
+</hibernate-mapping>

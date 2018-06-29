@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-01 18:16:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DBClasses.Cards" table="cards" schema="public" optimistic-lock="version">
+        <id name="cardid" type="int">
+            <column name="cardid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clients" class="DBClasses.Clients" fetch="select">
+            <column name="clients_clientid" not-null="true" />
+        </many-to-one>
+        <property name="actdate" type="timestamp">
+            <column name="actdate" length="22" />
+        </property>
+        <property name="expdate" type="timestamp">
+            <column name="expdate" length="22" />
+        </property>
+        <property name="points" type="java.lang.Integer">
+            <column name="points" />
+        </property>
+        <set name="cardusages" table="cardusage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cards_cardid" not-null="true" />
+            </key>
+            <one-to-many class="DBClasses.Cardusage" />
+        </set>
+        <set name="transactionses" table="transactions" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cards_cardid" not-null="true" />
+            </key>
+            <one-to-many class="DBClasses.Transactions" />
+        </set>
+    </class>
+</hibernate-mapping>

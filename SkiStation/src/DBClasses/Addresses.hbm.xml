@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-01 18:16:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DBClasses.Addresses" table="addresses" schema="public" optimistic-lock="version">
+        <id name="addressid" type="int">
+            <column name="addressid" />
+            <generator class="identity" />
+        </id>
+        <property name="city" type="string">
+            <column name="city" length="50" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="50" />
+        </property>
+        <property name="street" type="string">
+            <column name="street" length="50" />
+        </property>
+        <set name="userses" table="users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="addresses_addressid" not-null="true" />
+            </key>
+            <one-to-many class="DBClasses.Users" />
+        </set>
+    </class>
+</hibernate-mapping>

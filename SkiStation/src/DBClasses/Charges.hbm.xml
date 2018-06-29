@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-01 18:16:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DBClasses.Charges" table="charges" schema="public" optimistic-lock="version">
+        <id name="chargeid" type="int">
+            <column name="chargeid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clients" class="DBClasses.Clients" fetch="select">
+            <column name="clients_clientid" not-null="true" />
+        </many-to-one>
+        <property name="chargedate" type="timestamp">
+            <column name="chargedate" length="22" />
+        </property>
+        <property name="points" type="java.lang.Integer">
+            <column name="points" />
+        </property>
+    </class>
+</hibernate-mapping>

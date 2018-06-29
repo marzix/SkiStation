@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-09 22:48:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DBClasses.Terminal" table="terminal" schema="public">
+        <id name="terminalid" type="int">
+            <column name="terminalid" />
+            <generator class="identity"></generator>
+        </id>
+        <many-to-one name="attraction" class="DBClasses.Attraction" fetch="select">
+            <column name="attraction_attractionid" not-null="true" />
+        </many-to-one>
+        <property name="locktime" type="java.lang.Integer">
+            <column name="locktime" />
+        </property>
+        <set name="productitems" table="productitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="terminal_terminalid" not-null="true" />
+            </key>
+            <one-to-many class="DBClasses.Productitem" />
+        </set>
+        <set name="cardusages" table="cardusage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="terminal_terminalid" not-null="true" />
+            </key>
+            <one-to-many class="DBClasses.Cardusage" />
+        </set>
+    </class>
+</hibernate-mapping>

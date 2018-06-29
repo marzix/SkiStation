@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="postgres" match-schema="public"/>
+  <table-filter match-name="pricelist"/>
+  <table-filter match-name="cardusage"/>
+  <table-filter match-name="boughtitem"/>
+  <table-filter match-name="transactions"/>
+  <table-filter match-name="productitem"/>
+  <table-filter match-name="clients"/>
+  <table-filter match-name="product"/>
+  <table-filter match-name="users"/>
+  <table-filter match-name="itemprice"/>
+  <table-filter match-name="terminal"/>
+  <table-filter match-name="employees"/>
+  <table-filter match-name="cards"/>
+  <table-filter match-name="charges"/>
+  <table-filter match-name="addresses"/>
+  <table-filter match-name="attraction"/>
+</hibernate-reverse-engineering>
